@@ -726,7 +726,7 @@ def run(dry_run=False, force=False, probe=False, silent=False):
                 log("积分卡已从轮播移除、轮播停住（今日已领过），无需操作。", silent)
                 return finish(0, "already_claimed", "积分卡已从轮播移除（今日已领过）", t0, silent,
                               last_seen_date=today, last_state="claimed")
-            # 轮播在转，但整整两轮（45s）都没轮到积分卡 —— 领到之后积分卡会被移出轮播，
+            # 轮播在转，但整整一轮（cycle_wait）都没轮到积分卡 —— 领到之后积分卡会被移出轮播，
             # 剩下的两张继续转，所以这同样是「今天已领」。
             # 留 claimed_by 标记，方便日后出问题时一眼看出「是靠缺席推出来的，不是看到灰按钮」。
             log("轮播转满整轮都没有积分卡（已领后会被移出轮播），判定今日已领。", silent)
