@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.log
+logs/
+captures/fail_*.png
+captures/button_after.png
+history.jsonl
+state.json
+status.txt

@@ -1,0 +1,36 @@
+{
+  "window_title_keyword": "WorkBuddy",
+  "app_path": "C:\\Users\\24508\\AppData\\Local\\Programs\\WorkBuddy\\WorkBuddy.exe",
+
+  "_轮播": "2026-10-18 版本更新：左下角改为三张卡片轮播，每张约停 7.5 秒、整轮约 22.5 秒。三张按钮都是白药丸，只有「Buddy加油站 / 每日可领 100 积分」那张有绿色数字",
+  "cycle_wait": 35,
+  "poll_interval": 0.8,
+  "_已领判定": "领到后积分卡会从轮播里被移除、轮播随之停住（实测 51 秒零变化）。所以「只剩别的卡 + 画面静止 18 秒」= 今日已领",
+  "still_to_claimed": 18,
+  "verify_wait": 9,
+
+  "_积分卡判据": "积分卡上「100」是亮绿色，另外两张卡绿色像素为 0（实测 370 vs 0），这是唯一稳定的区分特征",
+  "green_hsv_lo": [52, 80, 110],
+  "green_hsv_hi": [98, 255, 255],
+  "green_min_px": 120,
+
+  "_按钮识别": "白药丸=立即领取，灰药丸=今日已领",
+  "pill_roi": { "x1": 0.0, "y1": 0.66, "x2": 0.34, "y2": 0.93 },
+
+  "_标题兜底": "仅当没识别到按钮时，用「该区域亮像素占比」区分「卡片在但界面改版」还是「卡片真不在」",
+  "card_text_roi": { "x1": 0.01, "y1": 0.70, "x2": 0.17, "y2": 0.92 },
+  "card_text_min_ratio": 0.003,
+  "match_threshold": 0.8,
+
+  "_被盖住时": "识别不到卡片时，若用户已空闲且 WorkBuddy 不是最前窗口，就把它抬到前台点完再切回原窗口",
+  "raise_if_covered": true,
+
+  "launch_wait": 90,
+  "card_wait": 60,
+  "max_click": 3,
+  "idle_wait": 4,
+  "idle_timeout": 120,
+  "schedule_times": ["09:00", "12:30", "16:30"],
+  "_补领触发": "计划任务里还能挂「解锁后 30 秒 / 登录后 1 分钟」补跑（install_task.py 注册；注册这两类触发需要管理员权限）",
+  "extra_triggers": []
+}
